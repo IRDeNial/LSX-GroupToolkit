@@ -12,13 +12,21 @@
 // @include *://leak.sx/managegroup.php?gid=*
 // @include *://www.leak.sx/managegroup.php?gid=*
 //
-// @version 1.0
+// @version 1.0.1
 // @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @grant metadata
 //
 // ==/UserScript==
  
+/*
+    Changelog
+        v1.0.0 - 8/1/2014
+            Initial Version
+        v1.0.1 - 8/1/2014
+            Added changelog
+*/
+
 /**
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
