@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name Group Leader Toolkit
+// @name Leak.sx Group Leader Toolkit
 // @description Various tools useful for group leaders to help manage their groups
 //
 // @author IRDeNial <http://github.com/IRDeNial>
