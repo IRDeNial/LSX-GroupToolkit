@@ -77,7 +77,7 @@
 
         if(document.location.toString().indexOf('/managegroup.php') != -1) {
             var gid = document.location.toString().split('/managegroup.php?gid=')[1];
-            jQ('p:contains("Group Leaders:") a').hide();
+            jQ('p:contains("Group Leaders:") a').parent().hide();
 
             if(userGroups.indexOf(gid)) {
                 // Tool List
