@@ -12,7 +12,7 @@
 // @include *://leak.sx/managegroup.php?gid=*
 // @include *://www.leak.sx/managegroup.php?gid=*
 //
-// @version 1.1.0
+// @version 1.1.1
 // @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @grant metadata
@@ -28,6 +28,8 @@
         v1.1.0 - 8/2/2014
             Added "Leaders" list
             Added Split view for UID list and Username list.
+        v1.1.1 - 8/2/2014
+            Hid default leaders list.
 */
 
 /**
