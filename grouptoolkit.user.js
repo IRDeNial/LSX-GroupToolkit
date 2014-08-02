@@ -9,13 +9,14 @@
 // @license GPLv3 - http://www.gnu.org/licenses/gpl-3.0.txt
 // @copyright Copyright (C) 2014, by Mike <http://github.com/IRDeNial>
 //
-// @include *://*.leak.sx/managegroup.php?gid=
+// @include *://leak.sx/managegroup.php?gid=*
+// @include *://www.leak.sx/managegroup.php?gid=*
 //
 // @version 1.0
 // @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
-// @run-at document-start|document-end
-// @unwrap
+// @grant metadata
+//
 // ==/UserScript==
  
 /**
@@ -65,8 +66,8 @@
             var gid = document.location.toString().split('/managegroup.php?gid=')[1];
 
             if(userGroups.indexOf(gid)) {
-                var manageMembersForm = jQ('form')[0];
-                var addMembersForm = jQ('form')[1];
+                var manageMembersForm = jQ('form:eq(0)');
+                var addMembersForm = jQ('form:eq(1)');
 
                 jQ(' \
                     <br /> \
@@ -126,9 +127,9 @@
                     jQ('#userListDiv').append("[@" + jQ('form:first tr:nth-child(' + i + ') a').prop('href').toString().split('user-')[1] + "]\r\n");
                 }
 
-                addMembersForm.hide();
-                jQ('#listMembersTable').hide();
                 manageMembersForm.hide();
+                jQ('#listMembersTable').hide();
+                addMembersForm.hide();
 
                 jQ('#removeMembersLink').click(function(){
                     addMembersForm.hide();
