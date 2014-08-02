@@ -12,7 +12,7 @@
 // @include *://leak.sx/managegroup.php?gid=*
 // @include *://www.leak.sx/managegroup.php?gid=*
 //
-// @version 1.0.1
+// @version 1.1.0
 // @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @grant metadata
@@ -25,6 +25,9 @@
             Initial Version
         v1.0.1 - 8/1/2014
             Added changelog
+        v1.1.0 - 8/2/2014
+            Added "Leaders" list
+            Added Split view for UID list and Username list.
 */
 
 /**
@@ -74,9 +77,7 @@
             var gid = document.location.toString().split('/managegroup.php?gid=')[1];
 
             if(userGroups.indexOf(gid)) {
-                var manageMembersForm = jQ('form:eq(0)');
-                var addMembersForm = jQ('form:eq(1)');
-
+                // Tool List
                 jQ(' \
                     <br /> \
                     <table id="toolList" style="border:1px black;width:100%;margin-right:10px;border-collapse:collapse;text-align:center;" border="1"> \
@@ -91,6 +92,14 @@
                                 </td> \
                                 <td> \
                                     List members of this user group by their UID tags. \
+                                </td> \
+                            </tr> \
+                            <tr> \
+                                <td style="padding:3px;"> \
+                                    <a href="#listLeaders" id="listLeadersLink">List Leaders</a> \
+                                </td> \
+                                <td> \
+                                    List leaders of this user group by their UID tags. \
                                 </td> \
                             </tr> \
                             <tr> \
@@ -113,7 +122,8 @@
                     </table> \
                     <br /> \
                 ').insertAfter('p:contains("Group Leaders:")');
-        
+                
+                // User List
                 jQ(' \
                     <table id="listMembersTable" class="tborder" border="0" cellpadding="10" cellspacing="0"> \
                         <tbody> \
@@ -123,38 +133,92 @@
                                 </td> \
                             </tr> \
                             <tr> \
+                                <td>UID List</td> \
+                                <td>Username list</td> \
+                            <tr> \
                                 <td> \
-                                    <textarea id="userListDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
+                                    <textarea id="userListUIDDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
+                                </td> \
+                                <td> \
+                                    <textarea id="userListUNDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
                                 </td> \
                             </tr> \
                         </tbody> \
                     </table> \
                 ').insertAfter('#toolList');
 
-                for(var i = 3;i < jQ('form:first tr').length + 1; ++i) {
-                    jQ('#userListDiv').append("[@" + jQ('form:first tr:nth-child(' + i + ') a').prop('href').toString().split('user-')[1] + "]\r\n");
-                }
+                // Leader List
+                jQ(' \
+                    <table id="listLeadersTable" class="tborder" border="0" cellpadding="10" cellspacing="0"> \
+                        <tbody> \
+                            <tr> \
+                                <td class="thead" colspan="6"> \
+                                  <strong>Members in "Reality"</strong> \
+                                </td> \
+                            </tr> \
+                            <tr> \
+                                <td>UID List</td> \
+                                <td>Username list</td> \
+                            <tr> \
+                                <td> \
+                                    <textarea id="leaderUIDDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
+                                </td> \
+                                <td> \
+                                    <textarea id="leaderUNDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
+                                </td> \
+                            </tr> \
+                        </tbody> \
+                    </table> \
+                ').insertAfter('#toolList');
 
-                manageMembersForm.hide();
-                jQ('#listMembersTable').hide();
+                var listMembersTable = jQ('#listMembersTable');
+                var removeMembersForm = jQ('form:eq(0)');
+                var addMembersForm = jQ('form:eq(1)');
+                var listLeadersTable = jQ('#listLeadersTable');
+
+                jQ('p:contains("Group Leaders:") a').each(function(i){
+                    jQ('#leaderUIDDiv').append("[@" + jQ('p:contains("Group Leaders:") a:eq('+i+')').prop('href').toString().split('user-')[1] + "]\r\n");
+                    jQ('#leaderUNDiv').append(jQ('p:contains("Group Leaders:") a:eq('+i+') span').text() + "\r\n")
+                });
+
+                jQ('form:first tr').each(function(i) {
+                    if(i < 3) return;
+                    jQ('#userListUIDDiv').append("[@" + jQ('form:first tr:eq('+i+') a').prop('href').toString().split('user-')[1] + "]\r\n");
+                    jQ('#userListUNDiv').append(jQ('form:first tr:eq('+i+') a span').text() + "\r\n");
+                });
+
+                removeMembersForm.hide();
+                listMembersTable.hide();
                 addMembersForm.hide();
+                listLeadersTable.hide();
 
                 jQ('#removeMembersLink').click(function(){
                     addMembersForm.hide();
-                    jQ('#listMembersTable').hide();
-                    manageMembersForm.show();
+                    listMembersTable.hide();
+                    removeMembersForm.show();
+                    listLeadersTable.hide();
                 });
 
                 jQ('#listMembersLink').click(function(){
                     addMembersForm.hide();
-                    jQ('#listMembersTable').show();
-                    manageMembersForm.hide();
+                    listMembersTable.show();
+                    removeMembersForm.hide();
+                    listLeadersTable.hide();
                 });
+
 
                 jQ('#addMembersLink').click(function(){
                     addMembersForm.show();
-                    jQ('#listMembersTable').hide();
-                    manageMembersForm.hide();
+                    listMembersTable.hide();
+                    removeMembersForm.hide();
+                    listLeadersTable.hide();
+                });
+
+                jQ('#listLeadersLink').click(function(){
+                    addMembersForm.hide();
+                    listMembersTable.hide();
+                    removeMembersForm.hide();
+                    listLeadersTable.show();
                 });
             }
         }
