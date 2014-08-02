@@ -4,15 +4,15 @@
 //
 // @author IRDeNial <http://github.com/IRDeNial>
 // @namespace http://github.com/IRDeNial/
-// @downloadURL https://raw.github.com/sepehr/userscript-SCRIPT/master/SCRIPT.user.js
+// @downloadURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @license GPLv3 - http://www.gnu.org/licenses/gpl-3.0.txt
-// @copyright Copyright (C) 2012, by Sepehr Lajevardi <me@sepehr.ws>
+// @copyright Copyright (C) 2014, by Mike <http://github.com/IRDeNial>
 //
 // @include *://*.leak.sx/managegroup.php?gid=
 //
 // @version 1.0
-// @updateURL https://raw.github.com/sepehr/userscript-SCRIPT/master/SCRIPT.user.js
+// @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @run-at document-start|document-end
 // @unwrap
