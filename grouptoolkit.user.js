@@ -60,26 +60,26 @@
     }
 
     function main(parameters) {
-        var userGroups = [
-            41, // Reality
-            61, // Alpha
-            27, // Anime
-            68, // Diamond
-            46, // Ice
-            18, // Judgement
-            53, // Kingdom
-            45, // Knight
-            51, // Primus
-            32, // Writers
-            43, // Impulse
-            37, // Maid Cafe
-        ];
+        var userGroups = {
+            41: "Reality",
+            61: "Alpha",
+            27: "Anime",
+            68: "Diamond",
+            46: "Ice",
+            18: "Judgement",
+            53: "Kingdom",
+            45: "Knight",
+            51: "Primus",
+            32: "Writers",
+            43: "Impulse",
+            37: "Communism"
+        };
 
         if(document.location.toString().indexOf('/managegroup.php') != -1) {
             var gid = document.location.toString().split('/managegroup.php?gid=')[1];
             jQ('p:contains("Group Leaders:") a').parent().hide();
 
-            if(userGroups.indexOf(gid)) {
+            if(userGroups.hasOwnProperty(gid)) {
                 // Tool List
                 jQ(' \
                     <br /> \
@@ -132,7 +132,7 @@
                         <tbody> \
                             <tr> \
                                 <td class="thead" colspan="6"> \
-                                  <strong>Members in "Reality"</strong> \
+                                  <strong>Members in ' + userGroups[gid] +'</strong> \
                                 </td> \
                             </tr> \
                             <tr> \
@@ -156,7 +156,7 @@
                         <tbody> \
                             <tr> \
                                 <td class="thead" colspan="6"> \
-                                  <strong>Members in "Reality"</strong> \
+                                  <strong>Members in ' + userGroups[gid] +'</strong> \
                                 </td> \
                             </tr> \
                             <tr> \
