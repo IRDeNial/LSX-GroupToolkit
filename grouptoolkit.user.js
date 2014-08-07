@@ -12,7 +12,7 @@
 // @include *://leak.sx/managegroup.php?gid=*
 // @include *://www.leak.sx/managegroup.php?gid=*
 //
-// @version 1.1.1
+// @version 1.2
 // @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @grant metadata
@@ -30,6 +30,8 @@
             Added Split view for UID list and Username list.
         v1.1.1 - 8/2/2014
             Hid default leaders list.
+        v1.2 - 8/7/2014
+            Added "Misc. Information" tool.
 */
 
 /**
@@ -121,10 +123,36 @@
                                     Select members to remove this user group. \
                                 </td> \
                             </tr> \
+                            <tr> \
+                                <td style="padding:3px;"> \
+                                    <a href="#otherInfo" id="otherInfoLink">Other Information</a> \
+                                </td> \
+                                <td> \
+                                    Misc. information about this user group. \
+                                </td> \
+                            </tr> \
                         </tbody> \
                     </table> \
                     <br /> \
                 ').insertAfter('p:contains("Group Leaders:")');
+
+                // User List
+                jQ(' \
+                    <table id="otherInfoTable" class="tborder" border="0" cellpadding="10" cellspacing="0"> \
+                        <tbody> \
+                            <tr> \
+                                <td class="thead" colspan="6"> \
+                                  <strong>Misc. Information About ' + userGroups[gid] +'</strong> \
+                                </td> \
+                            </tr> \
+                            <tr> \
+                                <td>
+                                    Current Members <span id="curMemberCount">0</span> \
+                                </td> \
+                            </tr> \
+                        </tbody> \
+                    </table> \
+                ').insertAfter('#toolList');
                 
                 // User List
                 jQ(' \
@@ -156,7 +184,7 @@
                         <tbody> \
                             <tr> \
                                 <td class="thead" colspan="6"> \
-                                  <strong>Members in ' + userGroups[gid] +'</strong> \
+                                  <strong>Leaders of ' + userGroups[gid] +'</strong> \
                                 </td> \
                             </tr> \
                             <tr> \
@@ -188,6 +216,7 @@
                     if(i < 3) return;
                     jQ('#userListUIDDiv').append("[@" + jQ('form:first tr:eq('+i+') a').prop('href').toString().split('user-')[1] + "]\r\n");
                     jQ('#userListUNDiv').append(jQ('form:first tr:eq('+i+') a span').text() + "\r\n");
+                    jQ('#curMemberCount').text(parseInt(jQ('#curMemberCount').text) + 1);
                 });
 
                 removeMembersForm.hide();
