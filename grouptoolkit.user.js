@@ -32,6 +32,9 @@
             Hid default leaders list.
         v1.2 - 8/7/2014
             Added "Misc. Information" tool.
+        v1.2.1 - 8/7/2014
+            Removed "Misc. Information" tool.
+            Fixed what I broke... :(
 */
 
 /**
@@ -82,141 +85,118 @@
             jQ('p:contains("Group Leaders:") a').parent().hide();
 
             if(userGroups.hasOwnProperty(gid)) {
-                // Tool List
-                jQ(' \
-                    <br /> \
-                    <table id="toolList" style="border:1px black;width:100%;margin-right:10px;border-collapse:collapse;text-align:center;" border="1"> \
-                        <tbody> \
-                            <tr style="background-color:grey;color:white;"> \
-                                <th class="thead" style="padding:3px;">Tool Link</th> \
-                                <th class="thead" style="padding:3px;">Description</th> \
-                            </tr> \
-                            <tr> \
-                                <td style="padding:3px;"> \
-                                    <a href="#listMembers" id="listMembersLink">List Members</a> \
-                                </td> \
-                                <td> \
-                                    List members of this user group by their UID tags. \
-                                </td> \
-                            </tr> \
-                            <tr> \
-                                <td style="padding:3px;"> \
-                                    <a href="#listLeaders" id="listLeadersLink">List Leaders</a> \
-                                </td> \
-                                <td> \
-                                    List leaders of this user group by their UID tags. \
-                                </td> \
-                            </tr> \
-                            <tr> \
-                                <td style="padding:3px;"> \
-                                    <a href="#addMembers" id="addMembersLink">Add Members</a> \
-                                </td> \
-                                <td> \
-                                    Add members to this user group. \
-                                </td> \
-                            </tr> \
-                            <tr> \
-                                <td style="padding:3px;"> \
-                                    <a href="#removeMembers" id="removeMembersLink">Remove Members</a> \
-                                </td> \
-                                <td> \
-                                    Select members to remove this user group. \
-                                </td> \
-                            </tr> \
-                            <tr> \
-                                <td style="padding:3px;"> \
-                                    <a href="#otherInfo" id="otherInfoLink">Other Information</a> \
-                                </td> \
-                                <td> \
-                                    Misc. information about this user group. \
-                                </td> \
-                            </tr> \
-                        </tbody> \
-                    </table> \
-                    <br /> \
-                ').insertAfter('p:contains("Group Leaders:")');
-
                 // User List
-                jQ(' \
-                    <table id="otherInfoTable" class="tborder" border="0" cellpadding="10" cellspacing="0"> \
-                        <tbody> \
-                            <tr> \
-                                <td class="thead" colspan="6"> \
-                                  <strong>Misc. Information About ' + userGroups[gid] +'</strong> \
-                                </td> \
-                            </tr> \
-                            <tr> \
-                                <td>
-                                    Current Members <span id="curMemberCount">0</span> \
-                                </td> \
-                            </tr> \
-                        </tbody> \
-                    </table> \
-                ').insertAfter('#toolList');
-                
-                // User List
-                jQ(' \
-                    <table id="listMembersTable" class="tborder" border="0" cellpadding="10" cellspacing="0"> \
-                        <tbody> \
-                            <tr> \
-                                <td class="thead" colspan="6"> \
-                                  <strong>Members in ' + userGroups[gid] +'</strong> \
-                                </td> \
-                            </tr> \
-                            <tr> \
-                                <td>UID List</td> \
-                                <td>Username list</td> \
-                            <tr> \
-                                <td> \
-                                    <textarea id="userListUIDDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
-                                </td> \
-                                <td> \
-                                    <textarea id="userListUNDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
-                                </td> \
-                            </tr> \
-                        </tbody> \
-                    </table> \
-                ').insertAfter('#toolList');
+                jQ(' ' +
+                    '<table id="listMembersTable" class="tborder" border="0" cellpadding="10" cellspacing="0">' + 
+                    '    <tbody>' + 
+                    '        <tr>' + 
+                    '            <td class="thead" colspan="6">' + 
+                    '              <strong>Members in ' + userGroups[gid] +'</strong>' + 
+                    '            </td>' + 
+                    '        </tr>' + 
+                    '        <tr>' + 
+                    '            <td colspan="2">Current Members: <span id="curMemberCount">0</span></td>' + 
+                    '        </tr>' + 
+                    '        <tr>' + 
+                    '            <td>UID List</td>' + 
+                    '            <td>Username list</td>' + 
+                    '        <tr>' + 
+                    '            <td>' + 
+                    '                <textarea id="userListUIDDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea>' + 
+                    '            </td>' + 
+                    '            <td>' + 
+                    '                <textarea id="userListUNDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea>' + 
+                    '            </td>' + 
+                    '        </tr>' + 
+                    '    </tbody>' + 
+                    '</table>' + 
+                '').insertAfter('p:contains("Group Leaders:")');
 
                 // Leader List
-                jQ(' \
-                    <table id="listLeadersTable" class="tborder" border="0" cellpadding="10" cellspacing="0"> \
-                        <tbody> \
-                            <tr> \
-                                <td class="thead" colspan="6"> \
-                                  <strong>Leaders of ' + userGroups[gid] +'</strong> \
-                                </td> \
-                            </tr> \
-                            <tr> \
-                                <td>UID List</td> \
-                                <td>Username list</td> \
-                            <tr> \
-                                <td> \
-                                    <textarea id="leaderUIDDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
-                                </td> \
-                                <td> \
-                                    <textarea id="leaderUNDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea> \
-                                </td> \
-                            </tr> \
-                        </tbody> \
-                    </table> \
-                ').insertAfter('#toolList');
+                jQ(' ' + 
+                    '<table id="listLeadersTable" class="tborder" border="0" cellpadding="10" cellspacing="0">' + 
+                    '    <tbody>' + 
+                    '        <tr>' + 
+                    '            <td class="thead" colspan="6">' +
+                    '              <strong>Leaders of ' + userGroups[gid] +'</strong>' + 
+                    '            </td>' + 
+                    '        </tr>' + 
+                    '        <tr>' + 
+                    '            <td>UID List</td>' + 
+                    '            <td>Username list</td>' + 
+                    '        <tr>' + 
+                    '            <td>' + 
+                    '                <textarea id="leaderUIDDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea>' + 
+                    '            </td>' + 
+                    '            <td>' + 
+                    '                <textarea id="leaderUNDiv" readonly="readonly" style="resize:none;width:100%;height:300px;"></textarea>' + 
+                    '            </td>' + 
+                    '        </tr>' + 
+                    '    </tbody>' + 
+                    '</table>' + 
+                '').insertAfter('p:contains("Group Leaders:")');
 
-                var listMembersTable = jQ('#listMembersTable');
+                // Tool List
+                jQ(' ' +
+                    ' <br />' +
+                    ' <table id="toolList" style="border:1px black;width:100%;margin-right:10px;border-collapse:collapse;text-align:center;" border="1">' + 
+                    '     <tbody>' + 
+                    '        <tr style="background-color:grey;color:white;">' +
+                    '            <th class="thead" style="padding:3px;">Tool Link</th>' +
+                    '            <th class="thead" style="padding:3px;">Description</th>' +
+                    '        </tr>' + 
+                    '        <tr>' + 
+                    '            <td style="padding:3px;">' + 
+                    '                <a id="listMembersLink" class="toolLink">List Members</a>' + 
+                    '            </td>' + 
+                    '            <td>' + 
+                    '                List members of this user group by their UID tags.' + 
+                    '            </td>' + 
+                    '        </tr>' + 
+                    '        <tr>' + 
+                    '            <td style="padding:3px;">' + 
+                    '                <a id="listLeadersLink" class="toolLink">List Leaders</a>' + 
+                    '            </td>' + 
+                    '            <td>' + 
+                    '                List leaders of this user group by their UID tags.' + 
+                    '            </td>' + 
+                    '        </tr>' + 
+                    '        <tr>' + 
+                    '            <td style="padding:3px;">' + 
+                    '                <a id="addMembersLink" class="toolLink">Add Members</a>' + 
+                    '            </td>' + 
+                    '            <td>' +
+                    '                Add members to this user group.' + 
+                    '           </td>' +
+                    '        </tr>' +
+                    '        <tr>' + 
+                    '            <td style="padding:3px;">' + 
+                    '                <a id="removeMembersLink" class="toolLink">Remove Members</a>' + 
+                    '            </td>' + 
+                    '            <td>' + 
+                    '                Select members to remove this user group.' + 
+                    '            </td>' + 
+                    '        </tr>' + 
+                    '    </tbody>' +
+                    '</table>' +
+                    '<br />' +
+                '').insertAfter('p:contains("Group Leaders:")');
+
                 var removeMembersForm = jQ('form:eq(0)');
                 var addMembersForm = jQ('form:eq(1)');
                 var listLeadersTable = jQ('#listLeadersTable');
+                var listMembersTable = jQ('#listMembersTable');
 
                 jQ('p:contains("Group Leaders:") a').each(function(i){
                     jQ('#leaderUIDDiv').append("[@" + jQ('p:contains("Group Leaders:") a:eq('+i+')').prop('href').toString().split('user-')[1] + "]\r\n");
-                    jQ('#leaderUNDiv').append(jQ('p:contains("Group Leaders:") a:eq('+i+') span').text() + "\r\n")
+                    jQ('#leaderUNDiv').append(jQ('p:contains("Group Leaders:") a:eq('+i+') span').text() + "\r\n");
                 });
 
                 jQ('form:first tr').each(function(i) {
                     if(i < 3) return;
                     jQ('#userListUIDDiv').append("[@" + jQ('form:first tr:eq('+i+') a').prop('href').toString().split('user-')[1] + "]\r\n");
                     jQ('#userListUNDiv').append(jQ('form:first tr:eq('+i+') a span').text() + "\r\n");
-                    jQ('#curMemberCount').text(parseInt(jQ('#curMemberCount').text) + 1);
+                    jQ('#curMemberCount').text(parseInt(jQ('#curMemberCount').text()) + 1);
                 });
 
                 removeMembersForm.hide();
