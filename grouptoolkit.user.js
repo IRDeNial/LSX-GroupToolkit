@@ -12,7 +12,7 @@
 // @include *://leak.sx/managegroup.php?gid=*
 // @include *://www.leak.sx/managegroup.php?gid=*
 //
-// @version 1.2.1
+// @version 1.2.2
 // @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @grant metadata
@@ -35,6 +35,8 @@
         v1.2.1 - 8/7/2014
             Removed "Misc. Information" tool.
             Fixed what I broke... :(
+        v1.2.2 - 8/8/2014
+            Fixed: https://github.com/IRDeNial/LSX-GroupToolkit/issues/1
 */
 
 /**
@@ -193,7 +195,7 @@
                 });
 
                 jQ('form:first tr').each(function(i) {
-                    if(i < 3) return;
+                    if(i < 2) return;
                     jQ('#userListUIDDiv').append("[@" + jQ('form:first tr:eq('+i+') a').prop('href').toString().split('user-')[1] + "]\r\n");
                     jQ('#userListUNDiv').append(jQ('form:first tr:eq('+i+') a span').text() + "\r\n");
                     jQ('#curMemberCount').text(parseInt(jQ('#curMemberCount').text()) + 1);
