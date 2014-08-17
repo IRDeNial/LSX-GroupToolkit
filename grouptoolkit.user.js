@@ -4,7 +4,7 @@
 //
 // @author IRDeNial <http://github.com/IRDeNial>
 // @namespace http://github.com/IRDeNial/
-// @downloadURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
+// @downloadURL https://raw.githubusercontent.com/IRDeNial/LSX-Userscripts/master/grouptoolkit.user.js
 //
 // @license GPLv3 - http://www.gnu.org/licenses/gpl-3.0.txt
 // @copyright Copyright (C) 2014, by Mike <http://github.com/IRDeNial>
@@ -12,8 +12,8 @@
 // @include *://leak.sx/managegroup.php?gid=*
 // @include *://www.leak.sx/managegroup.php?gid=*
 //
-// @version 1.2.2
-// @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
+// @version 1.2.3
+// @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-Userscripts/master/grouptoolkit.user.js
 //
 // @grant metadata
 //
