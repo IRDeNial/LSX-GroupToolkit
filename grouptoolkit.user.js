@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name Leak.sx Group Leader Toolkit
+// @name Leak Group Leader Toolkit
 // @description Various tools useful for group leaders to help manage their groups
 //
 // @author IRDeNial <http://github.com/IRDeNial>
@@ -10,9 +10,11 @@
 // @copyright Copyright (C) 2014, by Mike <http://github.com/IRDeNial>
 //
 // @include *://leak.sx/managegroup.php?gid=*
+// @include *://leakforums.org/managegroup.php?gid=*
 // @include *://www.leak.sx/managegroup.php?gid=*
+// @include *://www.leakforums.org/managegroup.php?gid=*
 //
-// @version 1.2.3a
+// @version 1.2.3b
 // @updateURL https://raw.githubusercontent.com/IRDeNial/LSX-GroupToolkit/master/grouptoolkit.user.js
 //
 // @grant metadata
@@ -41,6 +43,8 @@
             Moved repositories
         v1.2.3a - 8/27/2014
             Moved back to original repo.  Fuck that -.-
+        v1.2.3b - 9/9/2014
+            Updated to include new domain.  No major changes.
 */
 
 /**
